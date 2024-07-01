@@ -28,9 +28,9 @@ if(isset($_POST['action']) && $_POST['action']=='view'){
           <td>'.$row['email'].'</td>
           <td>'.$row['phone'].'</td>
           <td>
-             <a href="" title="View Details" class="text-success p-2"><i class="fa-solid fa-circle-info"></i></a>
-             <a href="" title="View Details" class="text-primary p-2"><i class="fa-solid fa-pen-to-square"></i></a>
-             <a href="" title="View Details" class="text-danger  p-2"><i class="fa-solid fa-trash"></i></a>
+             <a href="" title="View Details" class="text-success p-2 infoBtn" id="'.$row["id"].'"><i class="fa-solid fa-circle-info"></i></a>
+             <a href="" title="View Details" class="text-primary p-2 editBtn" id="'.$row["id"].'" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa-solid fa-pen-to-square"></i></a>
+             <a href="" title="View Details" class="text-danger  p-2 deletBtn" id="'.$row["id"].'"><i class="fa-solid fa-trash"></i></a>
           </td>
           </tr>
           '; 

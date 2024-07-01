@@ -70,7 +70,46 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
+                    <h4 class="modal-title">Add new user</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="" method="post" id="form-data">
+                        <div class="form-group m-4">
+                            <input type="text" name="fname" class="form-control" placeholder="First name" required>
+                        </div>
+                        <div class="form-group m-4">
+                            <input type="text" name="lname" class="form-control" placeholder="Last name" required>
+                        </div>
+                        <div class="form-group m-4">
+                            <input type="text" name="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="form-group m-4">
+                            <input type="text" name="phone" class="form-control" placeholder="Phone number" required>
+                        </div>
+                        <div class="form-group m-4">
+                            <input type="text" type="submit" name="insert" id="insert" value="Add new user" class="btn btn-danger btn-block">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer" >
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Edit user modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit User</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
@@ -112,6 +151,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
 
+        // Get all user
         showAllUsers();
         function showAllUsers(){
             $.ajax({
@@ -127,6 +167,7 @@
                 }
             })
         }
+        //Add user
         $("#insert").click(function(e){
             if($("#form-data")[0].checkValidity()){
                 e.preventDefault();
@@ -146,6 +187,20 @@
                 })
             }
         })
+
+        //Edit user
+        $("body").on("click",".editBtn",function(e){
+          e.preventDefault();
+          edit_id = $(this).attr('id');
+          $.ajax({
+             url:"action.php",
+             type:"POST",
+             data:{edit_id:edit_id},
+             success:function(response){
+                console.log(response);
+             }
+          });
+        });
     </script>
 </body>
 
