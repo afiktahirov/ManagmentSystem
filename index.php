@@ -9,7 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <body>
 
@@ -51,7 +53,8 @@
             <div class="col-lg-6">
                 <button type="button" class="btn btn-primary m-1 float-right" data-bs-toggle="modal"
                     data-bs-target="#addModal"><i class="fa-solid fa-user-plus"></i> &nbsp;&nbsp; Add new user</button>
-                <a href="" class="btn btn-success m-1 float-right"><i class="fa-solid fa-file-excel"></i> &nbsp;&nbsp; Export to excel</a>
+                <a href="" class="btn btn-success m-1 float-right"><i class="fa-solid fa-file-excel"></i>
+                    &nbsp;&nbsp; Export to excel</a>
             </div>
         </div>
         <hr class="my-1">
@@ -87,16 +90,18 @@
                             <input type="text" name="email" class="form-control" placeholder="Email" required>
                         </div>
                         <div class="form-group m-4">
-                            <input type="text" name="phone" class="form-control" placeholder="Phone number" required>
+                            <input type="text" name="phone" class="form-control" placeholder="Phone number"
+                                required>
                         </div>
                         <div class="form-group m-4">
-                            <input type="text" type="submit" name="insert" id="insert" value="Add new user" class="btn btn-danger btn-block">
+                            <input type="text" type="submit" name="insert" id="insert" value="Add new user"
+                                class="btn btn-danger btn-block">
                         </div>
                     </form>
                 </div>
 
                 <!-- Modal footer -->
-                <div class="modal-footer" >
+                <div class="modal-footer">
                 </div>
 
             </div>
@@ -115,27 +120,33 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="" method="post" id="form-data">
+                    <form action="" method="post" id="edit-form-data">
+                        <input type="hidden" name="id" id="id">
                         <div class="form-group m-4">
-                            <input type="text" name="fname" class="form-control" placeholder="First name" required>
+                            <input type="text" name="fname" id="fname" class="form-control"
+                                placeholder="First name" required>
                         </div>
                         <div class="form-group m-4">
-                            <input type="text" name="lname" class="form-control" placeholder="Last name" required>
+                            <input type="text" name="lname" id="lname" class="form-control"
+                                placeholder="Last name" required>
                         </div>
                         <div class="form-group m-4">
-                            <input type="text" name="email" class="form-control" placeholder="Email" required>
+                            <input type="text" name="email" id="email" class="form-control"
+                                placeholder="Email" required>
                         </div>
                         <div class="form-group m-4">
-                            <input type="text" name="phone" class="form-control" placeholder="Phone number" required>
+                            <input type="text" name="phone" id="phone" class="form-control"
+                                placeholder="Phone number" required>
                         </div>
                         <div class="form-group m-4">
-                            <input type="text" type="submit" name="insert" id="insert" value="Add new user" class="btn btn-danger btn-block">
+                            <input type="text" type="submit" name="update" id="update" value="Update user"
+                                class="btn btn-danger btn-block">
                         </div>
                     </form>
                 </div>
 
                 <!-- Modal footer -->
-                <div class="modal-footer" >
+                <div class="modal-footer">
                 </div>
 
             </div>
@@ -148,34 +159,36 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
-
         // Get all user
         showAllUsers();
-        function showAllUsers(){
+
+        function showAllUsers() {
             $.ajax({
                 url: 'action.php',
                 type: 'POST',
-                data: {action:"view"},
-                success:function(response){
+                data: {
+                    action: "view"
+                },
+                success: function(response) {
                     $('#showUser').html(response);
                     $("table").DataTable({
-                        order: [0,'desc']
+                        order: [0, 'desc']
                     });
 
                 }
             })
         }
         //Add user
-        $("#insert").click(function(e){
-            if($("#form-data")[0].checkValidity()){
+        $("#insert").click(function(e) {
+            if ($("#form-data")[0].checkValidity()) {
                 e.preventDefault();
                 $.ajax({
-                    url:'action.php',
-                    type:"POST",
-                    data: $("#form-data").serialize()+"&action=insert",
-                    success:function(response){
+                    url: 'action.php',
+                    type: "POST",
+                    data: $("#form-data").serialize() + "&action=insert",
+                    success: function(response) {
                         Swal.fire({
                             title: 'User added successfully',
                             type: 'success'
@@ -189,18 +202,80 @@
         })
 
         //Edit user
-        $("body").on("click",".editBtn",function(e){
-          e.preventDefault();
-          edit_id = $(this).attr('id');
-          $.ajax({
-             url:"action.php",
-             type:"POST",
-             data:{edit_id:edit_id},
-             success:function(response){
-                console.log(response);
-             }
-          });
+        $("body").on("click", ".editBtn", function(e) {
+            e.preventDefault();
+            edit_id = $(this).attr('id');
+            $.ajax({
+                url: "action.php",
+                type: "POST",
+                data: {
+                    edit_id: edit_id
+                },
+                success: function(response) {
+                    data = JSON.parse(response);
+                    $('#id').val(data.id)
+                    $('#fname').val(data.first_name)
+                    $('#lname').val(data.last_name)
+                    $('#email').val(data.email)
+                    $('#phone').val(data.phone)
+                }
+            });
         });
+
+        //Update user
+        $("#update").click(function(e) {
+            if ($("#edit-form-data")[0].checkValidity()) {
+                e.preventDefault();
+                $.ajax({
+                    url: 'action.php',
+                    type: "POST",
+                    data: $("#edit-form-data").serialize() + "&action=update",
+                    success: function(response) {
+                        Swal.fire({
+                            title: 'User updated successfully',
+                            type: 'success'
+                        })
+                        $("#editModal").modal('hide');
+                        $("#edit-form-data")[0].reset();
+                        showAllUsers();
+                    }
+                })
+            }
+        })
+        //Delet user
+        $("body").on("click", ".deleteBtn", function(e) {
+            e.preventDefault();
+            var tr = $(this).closest('tr');
+            del_id = $(this).attr('id');
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.value) {
+                   $.ajax({
+                    url:'action.php',
+                    type:"POST",
+                    data:{del_id:del_id},
+                    success:function(response){
+                        tr.css('background-color','#ff6666');
+                        Swal.fire(
+                            'Deleted!',
+                            'User deleted successfully',
+                            'success'
+                        )
+                        showAllUsers();
+                    }
+                   })
+                }
+            });
+
+        })
     </script>
 </body>
 
